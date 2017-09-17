@@ -15,12 +15,12 @@ run:
 
 
 build: 
-	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o file_server .
 
 build_image: 
-	docker build -t jordic/file_server:$(VERSION) .
+	docker build -t ops/fileserver:dev-1.0 .
 
 push: 
-	docker push jordic/file_server:$(VERSION)
+	docker push ops/fileserver:dev-1.0
 
 all: bindata-build build build_image

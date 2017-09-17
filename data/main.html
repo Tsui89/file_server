@@ -222,7 +222,7 @@
 <div class="container">
     <div class="row" style="margin-top:50px; border-top:1px solid #eaeaea; padding-top:20px; font-size:10px">
         <div class="col-md-12">
-        <p><a href="http://github.com/jordic/file_server">http://github.com/jordic/file_server</a> -- v.[% .version %]
+        <p>FileManager
         </p></div>
     </div>
 </div>
@@ -284,17 +284,6 @@
         <a  ng-click="Go(item.Name)" ng-if="item.IsDir" class="dir">{{ item.Name }}</a><span class="visible-xs small">{{ item.ModTime|date:'dd/MM/yyyy HH:mm:ss' }} | {{ item.Size|bytes }}</span>
     
 
-    <div class="col-md-12 renameinput inline-form" ng-show="showrename==true">
-        <input type="text" class="theinput" name="value" 
-            ng-model="newName" tfocus="showrename" 
-            ng-enter="SaveItem()" 
-            ng-esc="CloseInline()"
-             
-            id="file_{{ item.Name }}"
-            />
-        <!--<button class="btn btn-info btn-xs" ng-click="SaveItem()"><i class="fa fa-save"></i></button>
-        <button class="btn btn-default btn-xs" ng-click="showrename=false"><i class="fa fa-times"></i></button>-->
-    </div>
     </td>
 </script>
 

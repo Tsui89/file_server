@@ -40,8 +40,8 @@ func main() {
 		os.Exit(0)
 	}
 
-	flag.StringVar(&dir, "dir", "/tmp", "Specify a directory to server files from.")
-	flag.StringVar(&port, "port", ":8080", "Port to bind the file server")
+	flag.StringVar(&dir, "dir", "/data", "Specify a directory to server files from.")
+	flag.StringVar(&port, "port", "80", "Port to bind the file server")
 	flag.BoolVar(&logging, "log", true, "Enable Log (true/false)")
 	flag.StringVar(&auth, "auth", "", "'username:pass' Basic Auth")
 	flag.IntVar(&depth, "depth", 5, "Depth directory crawler")
@@ -104,8 +104,11 @@ func main() {
 	if debug {
 		log.Print("Serving data dir in debug mode.. no assets caching.\n")
 	}
-	http.ListenAndServe(port, mux)
-
+        port = ":"+port
+        err := http.ListenAndServe(port, mux)
+        if err != nil{
+          log.Println(err.Error())
+        }
 }
 
 func handleReq(w http.ResponseWriter, r *http.Request) {
