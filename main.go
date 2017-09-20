@@ -131,7 +131,11 @@ func handleReq(w http.ResponseWriter, r *http.Request) {
 	} else {
 		log.Printf("downloading file %s", path.Clean(dir+r.URL.Path))
 		r.Header.Del("If-Modified-Since")
+
 		http.ServeFile(w, r, path.Clean(dir+r.URL.Path))
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "content-type")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS")
 		//http.ServeContent(w, r, r.URL.Path)
 		//w.Write([]byte("this is a test inside file handler"))
 
